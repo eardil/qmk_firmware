@@ -16,25 +16,28 @@
 
 #include QMK_KEYBOARD_H
 #include "muse.h"
+#include "keymap_spanish.h"
+
 
 
 enum planck_layers {
   _QWERTY,
-  _MACOS,
   _GAME,
   _LOWER,
   _RAISE,
-  _LOWERM,
-  _RAISEM,
   _ADJUST,
   _MACROS
 };
 
 enum planck_keycodes {
   QWERTY = SAFE_RANGE,
-  MACOS,
   GAME,
-  BACKLIT
+  BACKLIT,
+  KC_SECRET_1,
+  KC_SECRET_2,
+  KC_SECRET_3,
+  KC_SECRET_4,
+  KC_SECRET_5
 };
 
 // Tap Dance declarations
@@ -44,8 +47,6 @@ enum {
 
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
-#define LOWERM MO(_LOWERM)
-#define RAISEM MO(_RAISEM)
 #define MACROS MO(_MACROS)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -53,10 +54,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Qwerty
  * ,-----------------------------------------------------------------------------------.
  * | Esc  |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  | Bksp |
- * |------+------+------+------+------+-------------+------+------+------+------+------|
- * | Tab  |   A  |   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  |   ;  |  "   |
- * |------+------+------+------+------+------|------+------+------+------+------+------|
- * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |Enter |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * | Tab  |   A  |   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  |   Ñ  |  ´   |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   -  |Enter |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * | Ctrl | Macro| GUI  | Alt  |Lower | Lead |Space |Raise | Left | Up   | Down |Right |
  * `-----------------------------------------------------------------------------------'
@@ -68,31 +69,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_LCTL,  MACROS,   KC_LGUI,  KC_LALT,  LOWER,    KC_LEAD,KC_SPC,   RAISE,    KC_LEFT,  KC_UP,    KC_DOWN,  KC_RGHT
 ),
 
-/* Mac OS
- * ,-----------------------------------------------------------------------------------.
- * | Esc  |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  | Bksp |
- * |------+------+------+------+------+-------------+------+------+------+------+------|
- * | Tab  |   A  |   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  |   ;  |  "   |
- * |------+------+------+------+------+------|------+------+------+------+------+------|
- * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |Enter |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Ctrl | Macro| Alt  | GUI  |LowerM| Lead |Space |RaiseM| Left | Up   | Down |Right |
- * `-----------------------------------------------------------------------------------'
- */
-[_MACOS] = LAYOUT_planck_grid( \
-  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-  _______, _______, KC_LALT, KC_LGUI, LOWERM,  _______, _______, RAISEM,  _______, _______, _______, _______ \
-),
 
 /* Gaming
  * ,-----------------------------------------------------------------------------------.
  * | Esc  |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  | Bksp |
- * |------+------+------+------+------+-------------+------+------+------+------+------|
- * | Tab  |   A  |   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  |   ;  |  "   |
- * |------+------+------+------+------+------|------+------+------+------+------+------|
- * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |Enter |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * | Tab  |   A  |   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  |   Ñ  |  ´   |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   -  |Enter |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * | Ctrl | Macro| GUI  | Alt  |Space |Lower |Space |Raise | Left | Up   | Down |Right |
  * `-----------------------------------------------------------------------------------'
@@ -107,81 +91,47 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Lower
  * ,-----------------------------------------------------------------------------------.
  * |Play/P|   F1 |  F2  |  F3  |  F4  |  F5  |  F6  |  F7  |  F8  |  F9  |  F10 | Del  |
- * |------+------+------+------+------+-------------+------+------+------+------+------|
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
  * | Del  |  F11 |  F12 |      |      |      |      |      |      |      |      |      |
- * |------+------+------+------+------+------|------+------+------+------+------+------|
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |PrntSc|      |      |      |      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |Adjust|      | Home | PgUp | PgDn | Play |
+ * |      |      |      |      |      |      |      |      | Home | PgUp | PgDn | End  |
  * `-----------------------------------------------------------------------------------'
  */
 [_LOWER] = LAYOUT_planck_grid( \
   KC_MPLY,  KC_F1,    KC_F2,    KC_F3,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10, \
   KC_VOLU,  KC_F11,   KC_F12,   _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______, \
   KC_VOLD,  KC_MPRV,  KC_MNXT,  KC_PSCR,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______, \
-  TO(0),    _______,  KC_NO,    KC_C,     KC_V,     _______,   KC_NO,    KC_N,     KC_HOME,  KC_PGUP,  KC_PGDN,  KC_END
-),
-
-/* Lower Mac OS
- * ,-----------------------------------------------------------------------------------.
- * |Play/P|   F1 |  F2  |  F3  |  F4  |  F5  |  F6  |  F7  |  F8  |  F9  |  F10 | Del  |
- * |------+------+------+------+------+-------------+------+------+------+------+------|
- * | Del  |  F11 |  F12 |      |      |      |      |      |      |      |      |      |
- * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |      |      |PrntSc|      |      |      |      |      |      |      |      |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |Adjust|      | Home | PgUp | PgDn | Play |
- * `-----------------------------------------------------------------------------------'
- */
-[_LOWERM] = LAYOUT_planck_grid( \
-  KC_MPLY,  KC_F1,    KC_F2,    KC_F3,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10, \
-  KC_VOLU,  KC_F11,   KC_F12,   _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______, \
-  KC_VOLD,  KC_MPRV,  KC_MNXT,  KC_PSCR,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______, \
-  TO(0),    _______,  KC_NO,    KC_C,     KC_V,     _______,   KC_NO,    KC_N,     KC_HOME,  KC_PGUP,  KC_PGDN,  KC_END
+  TO(0),    _______,  KC_NO,    _______,  _______,  _______,  _______,  _______,  KC_HOME,  KC_PGUP,  KC_PGDN,  KC_END
 ),
 
 /* Raise
  * ,-----------------------------------------------------------------------------------.
  * |   |  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | Del  |
- * |------+------+------+------+------+-------------+------+------+------+------+------|
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
  * | CapL |   @  |   S  |   D  |   F  |   G  |   ^  |   *  |   {  |   }  |   ~  |  '   |
- * |------+------+------+------+------+------|------+------+------+------+------+------|
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |   <  |   >  |   C  |   V  |   B  |   N  |   +  |   ¿  |   ?  |   \  |Enter |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |             |      | Home | PgUp | PgDn | Play |
+ * |      |      |      |      |      |      |      |      | Home | PgUp | PgDn | End  |
  * `-----------------------------------------------------------------------------------'
  */
 [_RAISE] = LAYOUT_planck_grid( \
   KC_GRV,   KC_1,       KC_2,     KC_3,     KC_4,     KC_5,     KC_6,           KC_7,           KC_8,     KC_9,          KC_0,          KC_DEL, \
   KC_CAPS,  RALT(KC_Q), _______,  _______,  _______,  _______,  RALT(KC_QUOT),  LSFT(KC_RBRC),  KC_QUOT,  KC_BSLS,       RALT(KC_RBRC), KC_MINS, \
-  _______,  KC_LT,      KC_GT,    _______,  _______,  _______,  _______,        KC_RBRC,        KC_EQL,   LSFT(KC_MINS), RALT(KC_MINS), _______, \
+  _______,  ES_LABK,    ES_RABK,  _______,  _______,  _______,  _______,        KC_RBRC,        KC_EQL,   LSFT(KC_MINS), RALT(KC_MINS), _______, \
   _______,  _______,    _______,  _______,  _______,  _______,   KC_RALT,        _______,        KC_HOME,  KC_PGUP,       KC_PGDN,       KC_END
 ),
 
-/* Raise Mac OS
- * ,-----------------------------------------------------------------------------------.
- * |   |  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | Del  |
- * |------+------+------+------+------+-------------+------+------+------+------+------|
- * | CapL |   @  |   S  |   D  |   F  |   G  |   ^  |   *  |   {  |   }  |   ~  |  '   |
- * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |   <  |   >  |   C  |   V  |   B  |   N  |   +  |   ¿  |   ?  |   \  |Enter |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |             |      | Home | PgUp | PgDn | Play |
- * `-----------------------------------------------------------------------------------'
- */
-[_RAISEM] = LAYOUT_planck_grid( \
-  KC_GRV,   KC_1,       KC_2,     KC_3,     KC_4,     KC_5,     KC_6,           KC_7,           KC_8,     KC_9,          KC_0,          KC_DEL, \
-  KC_CAPS,  RALT(KC_Q), _______,  _______,  _______,  _______,  RALT(KC_QUOT),  LSFT(KC_RBRC),  KC_QUOT,  KC_BSLS,       RALT(KC_RBRC), KC_MINS, \
-  _______,  KC_LT,      KC_GT,    _______,  _______,  _______,  _______,        KC_RBRC,        KC_EQL,   LSFT(KC_MINS), RALT(KC_MINS), _______, \
-  _______,  _______,    _______,  _______,  _______,  _______,   KC_RALT,        _______,        KC_HOME,  KC_PGUP,       KC_PGDN,       KC_END
-),
+
 
 /* Adjust (Lower + Raise)
  *                      v------------------------RGB CONTROL--------------------v
  * ,-----------------------------------------------------------------------------------.
  * |      | Reset|Debug | RGB  |RGBMOD| HUE+ | HUE- | SAT+ | SAT- |BRGTH+|BRGTH-|  Del |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |MUSmod|Aud on|Audoff|AGnorm|AGswap|Qwerty|MacOS |Gaming|      |      |
+ * |      |      |MUSmod|Aud on|Audoff|AGnorm|AGswap|Qwerty|Gaming|      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |Voice-|Voice+|Mus on|Musoff|MIDIon|MIDIof|TermOn|TermOf|      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -190,27 +140,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_ADJUST] = LAYOUT_planck_grid(
     _______, QK_BOOT,   DEBUG,   RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD,  RGB_VAI, RGB_VAD, KC_DEL ,
-    _______, _______, MU_MOD,  AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,    MACOS,    GAME,  _______,  _______,
+    _______, _______, MU_MOD,  AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,    GAME,   AG_LSWP, AG_LNRM,  _______,
     _______, MUV_DE,  MUV_IN,  MU_ON,   MU_OFF,  MI_ON,   MI_OFF,  _______, _______, _______, _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______, _______, _______
 ),
 
 /* Macros
  * ,-----------------------------------------------------------------------------------.
- * | Esc  |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  | Bksp |
- * |------+------+------+------+------+-------------+------+------+------+------+------|
- * | Tab  |   A  |   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  |   ;  |  "   |
- * |------+------+------+------+------+------|------+------+------+------+------+------|
- * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |Enter |
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Ctrl | Macro| Alt  | GUI  |LowerM| Lead |Space |RaiseM| Left | Up   | Down |Right |
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |             |      |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
 [_MACROS] = LAYOUT_planck_grid( \
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-  _______, _______, KC_LALT, KC_LGUI, LOWERM,  _______, _______, RAISEM,  _______, _______, _______, _______ \
+  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ \
 ),
 
 };
@@ -218,7 +168,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #ifdef RGBLIGHT_ENABLE
 void keyboard_post_init_user(void) {
   rgblight_enable_noeeprom(); // Enables RGB, without saving settings
-  rgblight_sethsv_noeeprom(HSV_SPRINGGREEN);
+  rgblight_sethsv_noeeprom(HSV_PURPLE);
   rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
 }
 #endif
@@ -230,6 +180,7 @@ void keyboard_post_init_user(void) {
 
 layer_state_t layer_state_set_user(layer_state_t state) {
   return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+  return state;
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -238,12 +189,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         print("mode just switched to qwerty and this is a huge string\n");
         set_single_persistent_default_layer(_QWERTY);
-      }
-      return false;
-      break;
-    case MACOS:
-      if (record->event.pressed) {
-        set_single_persistent_default_layer(_MACOS);
       }
       return false;
       break;
@@ -345,6 +290,8 @@ bool dip_switch_update_user(uint8_t index, bool active) {
     return true;
 }
 
+LEADER_EXTERNS();
+
 void matrix_scan_user(void) {
 #ifdef AUDIO_ENABLE
     if (muse_mode) {
@@ -364,6 +311,21 @@ void matrix_scan_user(void) {
         }
     }
 #endif
+LEADER_DICTIONARY() {
+    leading = false;
+    leader_end();
+
+    SEQ_ONE_KEY(KC_F) {
+      // Anything you can do in a macro.
+      SEND_STRING("QMK is awesome.");
+    }
+    SEQ_TWO_KEYS(KC_A, KC_S) {
+      register_code(KC_LGUI);
+      register_code(KC_S);
+      unregister_code(KC_S);
+      unregister_code(KC_LGUI);
+    }
+  }
 }
 
 bool music_mask_user(uint16_t keycode) {
@@ -379,15 +341,12 @@ bool music_mask_user(uint16_t keycode) {
 // ENCODER
 #if defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
-    [_QWERTY] =  { ENCODER_CCW_CW(KC_PGDN, KC_PGUP)  },
-    [_MACOS] =  { ENCODER_CCW_CW(KC_PGDN, KC_PGUP)  },
-    [_GAME] = { ENCODER_CCW_CW(KC_PGDN, KC_PGUP)  },
-    [_LOWER] =   { ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  },
-    [_LOWERM] =   { ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  },
-    [_RAISE] =  { ENCODER_CCW_CW(RGB_VAD, RGB_VAI)  },
-    [_RAISEM] =  { ENCODER_CCW_CW(RGB_VAD, RGB_VAI)  },
-    [_ADJUST] =  { ENCODER_CCW_CW(RGB_SAD, RGB_SAI)  },
-    [_MACROS] =   { ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }
+    [_QWERTY] =  { ENCODER_CCW_CW(KC_PGDN, KC_PGUP) },
+    [_GAME] = { ENCODER_CCW_CW(KC_PGDN, KC_PGUP) },
+    [_LOWER] =   { ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },
+    [_RAISE] =  { ENCODER_CCW_CW(RGB_VAD, RGB_VAI) },
+    [_ADJUST] =  { ENCODER_CCW_CW(RGB_SAD, RGB_SAI) },
+    [_MACROS] =   { ENCODER_CCW_CW(KC_VOLD, KC_VOLU) }
 };
 #endif
 
@@ -397,5 +356,6 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     // Tap once for Escape, twice for Caps Lock
     [TD_ESC_CAPS] = ACTION_TAP_DANCE_DOUBLE(KC_LEAD, KC_CAPS),
 };
+
 
 

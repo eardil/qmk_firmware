@@ -46,7 +46,7 @@
 //#define MIDI_TONE_KEYCODE_OCTAVES 2
 
 // Most tactile encoders have detents every 4 stages
-#define ENCODER_RESOLUTION 4
+#define ENCODER_RESOLUTION 2
 
 #define LEADER_PER_KEY_TIMING
 #define LEADER_TIMEOUT 250
