@@ -48,6 +48,4 @@
 // Most tactile encoders have detents every 4 stages
 #define ENCODER_RESOLUTION 2
 
-#define LEADER_PER_KEY_TIMING
-#define LEADER_TIMEOUT 250
-
+#define MACRO_TIMER 5
