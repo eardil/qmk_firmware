@@ -109,8 +109,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_SHIFT] = LAYOUT_planck_grid( \
   S(KC_GRV),S(KC_1),    S(KC_2),  S(KC_3),  S(KC_4),  S(KC_5),  S(KC_6),        S(KC_7),        S(KC_8),    S(KC_9),      S(KC_0),       S(KC_DEL),  \
-  KC_CAPS,  RALT(KC_Q), _______,  _______,  _______,  _______,  RALT(KC_QUOT),  LSFT(KC_RBRC),  S(KC_QUOT), S(KC_BSLS),   RALT(KC_RBRC), KC_MINS, \
-  _______,  ES_LABK,    ES_RABK,  _______,  _______,  _______,  _______,        KC_RBRC,        KC_EQL,     S(KC_MINS), RALT(KC_MINS), _______, \
+  KC_CAPS,  RALT(KC_Q), _______,  _______,  _______,  _______,  RALT(KC_QUOT),  LSFT(KC_RBRC),  S(KC_QUOT), S(KC_BSLS),   RALT(KC_RBRC), S(KC_MINS), \
+  _______,  ES_LABK,    ES_RABK,  _______,  _______,  _______,  _______,        KC_RBRC,        KC_EQL,     S(KC_MINS),   RALT(KC_MINS), _______, \
   _______,  _______,    _______,  _______,  _______,  _______,  KC_RALT,        _______,        KC_HOME,    KC_PGUP,      KC_PGDN,       KC_END
 ),
 
@@ -129,10 +129,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_ADJUST] = LAYOUT_planck_grid(
-    _______, QK_BOOT, DB_TOGG,   RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD,  RGB_VAI, RGB_VAD, KC_DEL ,
-    _______, _______, MU_NEXT,  AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,    GAME,   AG_LSWP, AG_LNRM,  _______,
+    _______, QK_BOOT, DB_TOGG,  RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD, RGB_VAI, RGB_VAD, KC_DEL ,
+    _______, _______, MU_NEXT,  AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,  GAME,    AG_LSWP, AG_LNRM, _______,
     _______, AU_PREV, AU_NEXT,  MU_ON,   MU_OFF,  MI_ON,   MI_OFF,  _______, _______, _______, _______, _______,
-    _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______, _______, _______
+    _______, _______, _______, _______, _______, _______, _______,  _______, _______, _______, _______, _______
 ),
 
 /* Macros
@@ -147,10 +147,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_MACROS] = LAYOUT_planck_grid( \
-  _______,KC_SECRET_1, KC_SECRET_2, KC_SECRET_3, KC_SECRET_4, KC_SECRET_5, _______, _______, _______, _______, _______, _______, \
-  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ \
+  _______,  KC_SECRET_1,  KC_SECRET_2,  KC_SECRET_5,  _______, _______, _______, _______, _______, _______, _______, _______, \
+  _______,  KC_SECRET_3,  KC_SECRET_4,  _______,      _______, _______, _______, _______, _______, _______, _______, _______, \
+  _______,  _______,      _______,      _______,      _______, _______, _______, _______, _______, _______, _______, _______, \
+  _______,  _______,      _______,      _______,      _______, _______, _______, _______, _______, _______, _______, _______ \
 ),
 
 };
