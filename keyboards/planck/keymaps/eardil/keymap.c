@@ -37,7 +37,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_ESC,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,   KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_BSPC, \
   KC_TAB,   KC_A,     KC_S,     KC_D,     KC_F,     KC_G,   KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_LBRC, \
   KC_LSFT,  KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,   KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,  KC_ENT, \
-  KC_LCTL,  MACROS,   KC_LGUI,  KC_LALT,  LOWER,    SHIFT,  KC_SPC,   RAISE,    KC_LEFT,  KC_UP,    KC_DOWN,  KC_RGHT
+  KC_LCTL,  MACROS,   KC_LGUI,  KC_LALT,  SHIFT,    LOWER,  KC_SPC,   RAISE,    KC_LEFT,  KC_UP,    KC_DOWN,  KC_RGHT
 ),
 
 
@@ -49,14 +49,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   -  |Enter |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Ctrl | Macro| GUI  | Alt  |Space |Lower |Space |Raise | Left | Up   | Down |Right |
+ * | Ctrl | Macro| GUI  | Alt  |Space |Lower |Shift |Raise | Left | Up   | Down |Right |
  * `-----------------------------------------------------------------------------------'
  */
 [_GAME] = LAYOUT_planck_grid( \
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-  _______, _______, KC_LGUI, KC_LALT, KC_SPC,  LOWER,   _______, _______, _______, _______, _______, _______ \
+  _______, _______, KC_LGUI, KC_LALT, KC_SPC,  SHIFT,   LOWER,   _______, _______, _______, _______, _______ \
 ),
 
 /* Lower
@@ -74,7 +74,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_MPLY,  KC_F1,    KC_F2,    KC_F3,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10, \
   KC_VOLU,  KC_F11,   KC_F12,   _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______, \
   KC_VOLD,  KC_MPRV,  KC_MNXT,  KC_PSCR,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______, \
-  TO(0),    _______,  KC_NO,    _______,  _______,  _______,  _______,  _______,  KC_HOME,  KC_PGUP,  KC_PGDN,  KC_END
+  TO(0),    _______,  _______,  _______,  _______,  _______,  _______,  _______,  KC_HOME,  KC_PGUP,  KC_PGDN,  KC_END
 ),
 
 /* Raise
@@ -92,7 +92,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_GRV,   KC_1,       KC_2,     KC_3,     KC_4,     KC_5,     KC_6,           KC_7,           KC_8,     KC_9,          KC_0,          KC_DEL, \
   KC_CAPS,  RALT(KC_Q), _______,  _______,  _______,  _______,  RALT(KC_QUOT),  LSFT(KC_RBRC),  KC_QUOT,  KC_BSLS,       RALT(KC_RBRC), KC_MINS, \
   _______,  ES_LABK,    ES_RABK,  _______,  _______,  _______,  _______,        KC_RBRC,        KC_EQL,   LSFT(KC_MINS), RALT(KC_MINS), _______, \
-  _______,  _______,    _______,  _______,  _______,  _______,   KC_RALT,        _______,       KC_HOME,  KC_PGUP,       KC_PGDN,       KC_END
+  _______,  _______,    _______,  _______,  _______,  _______,  _______,        _______,       KC_HOME,  KC_PGUP,       KC_PGDN,       KC_END
 ),
 
 
@@ -108,10 +108,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_SHIFT] = LAYOUT_planck_grid( \
-  S(KC_GRV),S(KC_1),    S(KC_2),  S(KC_3),  S(KC_4),  S(KC_5),  S(KC_6),        S(KC_7),        S(KC_8),    S(KC_9),      S(KC_0),       S(KC_DEL),  \
-  KC_CAPS,  RALT(KC_Q), _______,  _______,  _______,  _______,  RALT(KC_QUOT),  LSFT(KC_RBRC),  S(KC_QUOT), S(KC_BSLS),   RALT(KC_RBRC), S(KC_MINS), \
-  _______,  ES_LABK,    ES_RABK,  _______,  _______,  _______,  _______,        KC_RBRC,        KC_EQL,     S(KC_MINS),   RALT(KC_MINS), _______, \
-  _______,  _______,    _______,  _______,  _______,  _______,  KC_RALT,        _______,        KC_HOME,    KC_PGUP,      KC_PGDN,       KC_END
+  S(KC_GRV),S(KC_1),    S(KC_2),  S(KC_3),  S(KC_4),  S(KC_5),  S(KC_6),        S(KC_7),        S(KC_8),    S(KC_9),      S(KC_0),          S(KC_DEL),  \
+  KC_CAPS,  RALT(KC_Q), _______,  _______,  _______,  _______,  RALT(KC_QUOT),  LSFT(KC_RBRC),  S(KC_QUOT), S(KC_BSLS),   RALT(KC_RBRC),    S(KC_MINS), \
+  _______,  ES_LABK,    ES_RABK,  _______,  _______,  _______,  _______,        KC_RBRC,        KC_EQL,     S(KC_MINS),   S(RALT(KC_MINS)), _______, \
+  _______,  _______,    KC_RALT,  _______,  _______,  _______,  _______,        _______,        KC_HOME,    KC_PGUP,      KC_PGDN,          KC_END
 ),
 
 
@@ -194,13 +194,13 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
       #ifdef MOUSEKEY_ENABLE
         tap_code(KC_MS_WH_DOWN);
       #else
-        tap_code(KC_PGDN);
+        tap_code(KC_DOWN);
       #endif
     } else {
       #ifdef MOUSEKEY_ENABLE
         tap_code(KC_MS_WH_UP);
       #else
-        tap_code(KC_PGUP);
+        tap_code(KC_UP);
       #endif
     }
   }
@@ -274,9 +274,10 @@ bool music_mask_user(uint16_t keycode) {
 // ENCODER
 #if defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
-    [_QWERTY] =  { ENCODER_CCW_CW(KC_PGDN, KC_PGUP) },
-    [_GAME] = { ENCODER_CCW_CW(KC_PGDN, KC_PGUP) },
+    [_QWERTY] =  { ENCODER_CCW_CW(KC_DOWN, KC_UP) },
+    [_GAME] = { ENCODER_CCW_CW(KC_DOWN, KC_UP) },
     [_LOWER] =   { ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },
+    [_SHIFT] =   { ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },
     [_RAISE] =  { ENCODER_CCW_CW(RGB_VAD, RGB_VAI) },
     [_ADJUST] =  { ENCODER_CCW_CW(RGB_SAD, RGB_SAI) },
     [_MACROS] =   { ENCODER_CCW_CW(KC_VOLD, KC_VOLU) }
