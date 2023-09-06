@@ -89,12 +89,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_RAISE] = LAYOUT_planck_grid( \
-  KC_GRV,   KC_1,       KC_2,     KC_3,     KC_4,     KC_5,     KC_6,           KC_7,           KC_8,     KC_9,          KC_0,          KC_DEL, \
-  KC_CAPS,  RALT(KC_Q), _______,  _______,  _______,  _______,  RALT(KC_QUOT),  LSFT(KC_RBRC),  KC_QUOT,  KC_BSLS,       RALT(KC_RBRC), KC_MINS, \
-  _______,  ES_LABK,    ES_RABK,  _______,  _______,  _______,  _______,        KC_RBRC,        KC_EQL,   LSFT(KC_MINS), RALT(KC_MINS), _______, \
-  _______,  _______,    _______,  _______,  _______,  _______,  _______,        _______,       KC_HOME,  KC_PGUP,       KC_PGDN,       KC_END
+  KC_GRV,   KC_1,       KC_2,     KC_3,     KC_4,     KC_5,           KC_6,       KC_7,           KC_8,     KC_9,          KC_0,          KC_DEL, \
+  KC_CAPS,  RALT(KC_Q), _______,  _______,  _______,  RALT(KC_BSLS),  S(KC_LBRC), LSFT(KC_RBRC),  KC_QUOT,  KC_BSLS,       RALT(KC_RBRC), KC_MINS, \
+  _______,  ES_LABK,    ES_RABK,  _______,  _______,  _______,        _______,    KC_RBRC,        KC_EQL,   LSFT(KC_MINS), RALT(KC_MINS), _______, \
+  _______,  _______,    _______,  _______,  _______,  _______,        _______,    _______,        KC_HOME,  KC_PGUP,       KC_PGDN,       KC_END
 ),
-
 
 /* Shift
  * ,-----------------------------------------------------------------------------------.
@@ -110,13 +109,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_SHIFT] = LAYOUT_planck_grid( \
   S(KC_GRV),S(KC_1),    S(KC_2),  S(KC_3),  S(KC_4),  S(KC_5),  S(KC_6),        S(KC_7),        S(KC_8),    S(KC_9),      S(KC_0),          S(KC_DEL),  \
   KC_CAPS,  RALT(KC_Q), _______,  _______,  _______,  _______,  RALT(KC_QUOT),  LSFT(KC_RBRC),  S(KC_QUOT), S(KC_BSLS),   RALT(KC_RBRC),    S(KC_MINS), \
-  _______,  ES_LABK,    ES_RABK,  _______,  _______,  _______,  _______,        KC_RBRC,        KC_EQL,     S(KC_MINS),   S(RALT(KC_MINS)), _______, \
+  _______,  KC_GRV,     KC_NUBS,  _______,  _______,  _______,  _______,        KC_RBRC,        KC_EQL,     S(KC_MINS),   S(RALT(KC_MINS)), _______, \
   _______,  _______,    KC_RALT,  _______,  _______,  _______,  _______,        _______,        KC_HOME,    KC_PGUP,      KC_PGDN,          KC_END
 ),
 
-
-
-/* Adjust (Lower + Raise)
+/* Adjust (Shift + Raise)
  *                      v------------------------RGB CONTROL--------------------v
  * ,-----------------------------------------------------------------------------------.
  * |      | Reset|Debug | RGB  |RGBMOD| HUE+ | HUE- | SAT+ | SAT- |BRGTH+|BRGTH-|  Del |
@@ -130,7 +127,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_ADJUST] = LAYOUT_planck_grid(
     _______, QK_BOOT, DB_TOGG,  RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD, RGB_VAI, RGB_VAD, KC_DEL ,
-    _______, _______, MU_NEXT,  AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,  GAME,    AG_LSWP, AG_LNRM, _______,
+    _______, _______, MU_NEXT,  AU_ON,   AU_OFF,  AG_LSWP, AG_LNRM, QWERTY,  GAME,    _______, _______, _______,
     _______, AU_PREV, AU_NEXT,  MU_ON,   MU_OFF,  MI_ON,   MI_OFF,  _______, _______, _______, _______, _______,
     _______, _______, _______, _______, _______, _______, _______,  _______, _______, _______, _______, _______
 ),
@@ -173,39 +170,6 @@ uint8_t last_muse_note = 0;
 uint16_t muse_counter = 0;
 uint8_t muse_offset = 70;
 uint16_t muse_tempo = 50;
-
-bool encoder_update_user(uint8_t index, bool clockwise) {
-  if (muse_mode) {
-    if (IS_LAYER_ON(_RAISE)) {
-      if (clockwise) {
-        muse_offset++;
-      } else {
-        muse_offset--;
-      }
-    } else {
-      if (clockwise) {
-        muse_tempo+=1;
-      } else {
-        muse_tempo-=1;
-      }
-    }
-  } else {
-    if (clockwise) {
-      #ifdef MOUSEKEY_ENABLE
-        tap_code(KC_MS_WH_DOWN);
-      #else
-        tap_code(KC_DOWN);
-      #endif
-    } else {
-      #ifdef MOUSEKEY_ENABLE
-        tap_code(KC_MS_WH_UP);
-      #else
-        tap_code(KC_UP);
-      #endif
-    }
-  }
-    return true;
-}
 
 bool dip_switch_update_user(uint8_t index, bool active) {
     switch (index) {
